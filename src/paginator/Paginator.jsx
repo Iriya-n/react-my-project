@@ -14,7 +14,7 @@ export const Paginator = ({ pages, pressHandler, page, prev, next, size = 3 }) =
 				}}
 				className={prev ? "paginator-wrapper__item active" : "paginator-wrapper__item"}
 			>
-				<IconChevronLeft />
+				<IconChevronLeft/>
 			</button>
 
 			{firstIndex > 1 && (
@@ -59,7 +59,7 @@ export const Paginator = ({ pages, pressHandler, page, prev, next, size = 3 }) =
 				}}
 				className={next ? "paginator-wrapper__item active" : "paginator-wrapper__item"}
 			>
-				<IconChevronRight />
+				<IconChevronRight/>
 			</button>
 		</div>
 	);
