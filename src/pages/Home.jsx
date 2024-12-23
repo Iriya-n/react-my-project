@@ -30,7 +30,7 @@ export const Home = () => {
 				next={info?.next}
 				page={currentPage}
 			/>
-			
+			{!isFetching && <Paginator pagesCount={info.pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />}
 		</>
 	);
 };
