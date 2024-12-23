@@ -1,66 +1,66 @@
-import { useState } from "react";
+import React from "react";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import "./Paginator.scss";
 
-export function Paginator({ pagesCount, currentPage, setCurrentPage }) {
-	const [pages, setPages] = useState([1, 2, 3, "...", pagesCount]);
-	
-
-	const handleRightClick = () => {
-		setCurrentPage((prev) => {
-			if (prev + 1 <= 42) {
-				prev = prev + 1;
-			}
-
-			return prev;
-		});
-
-		if (currentPage === 4) {
-			setPages([1, "...", 3, 4, "...", pagesCount]);
-		}
-
-		if (currentPage > 4) {
-			setPages((prevPages) => {
-				return [1, "...", prevPages[2]++, prevPages[3]++, "...", pagesCount];
-			});
-
-			console.log(pages);
-		}
-	};
-
-	const handleLeftClick = () => {
-		setCurrentPage((prev) => {
-			if (prev - 1 > 0) {
-				prev = prev - 1;
-			}
-
-			return prev;
-		});
-	};
+export const Paginator = ({ pages, pressHandler, page, prev, next, size = 3 }) => {
+	let firstIndex = page;
+	let lastIndex = page + size - 1;
 
 	return (
-		<ul className="paginator">
-			{currentPage}
+		<div className="paginator-wrapper">
+			<button
+				onClick={() => {
+					if (prev) pressHandler((_) => _ - 1);
+				}}
+				className={prev ? "paginator-wrapper__item active" : "paginator-wrapper__item"}
+			>
+				<IconChevronLeft />
+			</button>
 
-			<li className="page arrow">
-				<button onClick={handleLeftClick}>
-					<img className="arrow left" src="/src/assets/left.svg"></img>
-				</button>
-			</li>
-			{pages.map((page, i) => {
+			{firstIndex > 1 && (
+				<>
+					<button onClick={() => pressHandler(1)} className="paginator-wrapper__item">
+						1
+					</button>
+					{firstIndex > 2 && <span>...</span>}
+				</>
+			)}
+
+			{new Array(size).fill("fill").map((_, index) => {
+				let newFirstIndex = firstIndex;
+
+				if (lastIndex >= pages) {
+					newFirstIndex = pages - 2;
+				}
+
+				let el = firstIndex + index;
+
 				return (
-					<li
-						className={`${typeof page === "string" ? "ellipsis" : "page"} ${page === currentPage ? "page_active" : ""}`}
-						key={page}
+					<button
+						key={el}
+						onClick={() => pressHandler(el)}
+						className={page === el ? "paginator-wrapper__item active" : "paginator-wrapper__item"}
 					>
-						{typeof page === "string" ? <span>...</span> : <a href="#">{page}</a>}
-					</li>
+						{el}
+					</button>
 				);
 			})}
-			<li className="page arrow">
-				<button onClick={handleRightClick}>
-					<img className="arrow right" src="/src/assets/right.svg"></img>
-				</button>
-			</li>
-		</ul>
+			{lastIndex < pages && (
+				<>
+					{lastIndex < pages - 1 && <span>...</span>}
+					<button onClick={() => pressHandler(pages)} className="paginator-wrapper__item">
+						{pages}
+					</button>
+				</>
+			)}
+			<button
+				onClick={() => {
+					if (next) pressHandler(page + 1);
+				}}
+				className={next ? "paginator-wrapper__item active" : "paginator-wrapper__item"}
+			>
+				<IconChevronRight />
+			</button>
+		</div>
 	);
-}
+};
