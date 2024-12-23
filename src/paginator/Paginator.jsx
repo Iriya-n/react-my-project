@@ -3,7 +3,7 @@ import "./Paginator.scss";
 
 export function Paginator({ pagesCount, currentPage, setCurrentPage }) {
 	const [pages, setPages] = useState([1, 2, 3, "...", pagesCount]);
-	// setCurrentPage(e.target.textContent)
+	
 
 	const handleRightClick = () => {
 		setCurrentPage((prev) => {
@@ -41,9 +41,9 @@ export function Paginator({ pagesCount, currentPage, setCurrentPage }) {
 		<ul className="paginator">
 			{currentPage}
 
-			<li className="page page__arrow">
+			<li className="page arrow">
 				<button onClick={handleLeftClick}>
-					<img className="arrow left-arrow" src="/src/images/left-arrow.svg"></img>
+					<img className="arrow left" src="/src/assets/left.svg"></img>
 				</button>
 			</li>
 			{pages.map((page, i) => {
@@ -56,9 +56,9 @@ export function Paginator({ pagesCount, currentPage, setCurrentPage }) {
 					</li>
 				);
 			})}
-			<li className="page page__arrow">
+			<li className="page arrow">
 				<button onClick={handleRightClick}>
-					<img className="arrow right-arrow" src="/src/images/right-arrow.svg"></img>
+					<img className="arrow right" src="/src/assets/right.svg"></img>
 				</button>
 			</li>
 		</ul>

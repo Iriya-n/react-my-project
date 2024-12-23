@@ -5,9 +5,9 @@ import { useAllEpisodes } from '../hooks/useAllEpisodes';
 import { useAllLocations } from '../hooks/useAllLocations';
 import './Character.scss';
 
-import episodeImg from "../images/episode.png";
-import locationImg from "../images/location.png";
-import rickImg from "../images/rick.png";
+import episodeImg from "../assets/episode.png";
+import locationImg from "../assets/location.png";
+import rickImg from "../assets/rick.png";
 
 export const Character = () => {
     const { characterId } = useParams();
