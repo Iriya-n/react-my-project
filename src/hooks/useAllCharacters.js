@@ -5,6 +5,6 @@ export const useCharacters = (params) => {
     return useQuery({
         queryFn: () => characters.getAllCharacters(params),
         queryKey: ['characters', params],
-        select: data => data.data.results
+        select: data => data.data
     })
 }

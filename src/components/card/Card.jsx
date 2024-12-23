@@ -2,7 +2,7 @@ import styles from "./Card.module.scss"
 
 export const Card = ({data}) => {
     return (
-        <div className={styles.card}>
+        <NavLink className={styles.card}>
             <img className={styles.cardImage} src={data.image} alt=""/>
             <div className={styles.textBox}>
                 <div className={styles.textWrap}>
@@ -20,6 +20,6 @@ export const Card = ({data}) => {
                     <p className={styles.text}>{data.episode[0].split('/').pop()}</p>
                 </div>
             </div>
-        </div>
+        </NavLink>
     )
 }

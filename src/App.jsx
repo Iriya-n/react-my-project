@@ -10,20 +10,11 @@ export const App = () => {
   const { data: charactersData, isFetched, isLoading } = useCharacters({ page })
 
   return (
-    <>
-      <Header />
-      <div className="wrapper">
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : isFetched ? (
-          charactersData?.map(el => (
-            <Card key={el.id} data={el} />
-          ))
-        ) : (
-          <p>Fetching...</p>
-        )}
-      </div>
-      <Footer page={page} setPage={setPage} />
-    </>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/character/:characterId" element={<></>}/>
+    </Routes>
   )
 }
+
+export default App
